@@ -9,13 +9,13 @@ May 14th, 2019
 
 Data used: Lewis, Jeffrey B., Keith Poole, Howard Rosenthal, Adam Boche, Aaron Rudkin, and Luke Sonnet (2019). Voteview: Congressional Roll-Call Votes Database. https://voteview.com/
 
-##DATA
+## DATA
 
 Using the extensive data provided by Keith Poole and Howard Rosenthal, I look at the congressional roll call vote in American history. I use two data sets; the first set includes every vote taken by every member in the selected congresses, and the second consists of basic biographical information for every member, particularly name and party. I limit the data to the House members, disregarding senate votes. I also limit the research to the 95th to the 116th (current congress). With this data, I am able to track every member’s voting trend for a given congress, and thus, how these trends change over time. By considering voting trends in congress over the last 42 years, one can analyze polarization based on how partisan or bipartisan each congress voted overall.
 
 I create political networks for each congress where the nodes are every House member in the congress and the edges reflect similar voting between two congresspeople . Given how divided the democratic and republican parties in the United States are today, and particularly how strong inter-party cohesion has become, I compare democratic to republican votes. Thus, to look at inter-party cooperation on roll-call votes, I exclusively evaluate connections between republican and democratic nodes, i.e. House members with these party affiliations.
 
-##THRESHOLD
+## THRESHOLD
 
 Every member in congress is likely to vote the same as a member of the opposing party at some point, creating a fully connected network. To avoid this discrepancy, I use a threshold that each pair of members’ voting records must meet in order for an edge to be created; each pair of congresspeople must vote the same on a specific number of bills for them to be connected. To find this value, I create a network of a single congress and find its average degree for different threshold values. Since voting patterns can change drastically over 42 years, I tested these values for both the 95th and 116th congresses (Page 4).
 
@@ -25,7 +25,7 @@ To create an edge between two congresspeople, I take the fraction of votes where
 
 
 
-##Degree Measures
+## Degree Measures
 
 Since each network is exclusively composed of inter-party connections, nodes with high degree centrality have a higher rate of voting the same as members of the opposing party. I evaluate the average degree, <k>, of every network. Congresses with a high <k> reflect more bipartisan voting while congresses with low <k> suggest greater party-voting disparity. I plot the average degree of congresses to analyze how voting trends have changed, based on party affiliation.
 Analysis
