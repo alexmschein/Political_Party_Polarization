@@ -17,7 +17,9 @@ I create political networks for each congress where the nodes are every House me
 
 ## THRESHOLD
 
-Every member in congress is likely to vote the same as a member of the opposing party at some point, creating a fully connected network. To avoid this discrepancy, I use a threshold that each pair of members’ voting records must meet in order for an edge to be created; each pair of congresspeople must vote the same on a specific number of bills for them to be connected. To find this value, I create a network of a single congress and find its average degree for different threshold values. Since voting patterns can change drastically over 42 years, I tested these values for both the 95th and 116th congresses (Page 4).
+Every member in congress is likely to vote the same as a member of the opposing party at some point, creating a fully connected network. To avoid this discrepancy, I use a threshold that each pair of members’ voting records must meet in order for an edge to be created; each pair of congresspeople must vote the same on a specific number of bills for them to be connected. To find this value, I create a network of a single congress and find its average degree for different threshold values. Since voting patterns can change drastically over 42 years, I tested these values for both the 95th and 116th congresses.
+
+![](Graph_Visualizations/ThresholdAnalysis95)
 
 From these graphs, we see that the median value for the 95th congress is 0.5 while the median value for the 116th congress is around 0.35. To have an adequate threshold across all 21 congresses, I use a threshold of 0.4.
 
@@ -28,7 +30,10 @@ To create an edge between two congresspeople, I take the fraction of votes where
 ## DEGREE MEASURES
 
 Since each network is exclusively composed of inter-party connections, nodes with high degree centrality have a higher rate of voting the same as members of the opposing party. I evaluate the average degree, <k>, of every network. Congresses with a high <k> reflect more bipartisan voting while congresses with low <k> suggest greater party-voting disparity. I plot the average degree of congresses to analyze how voting trends have changed, based on party affiliation.
-Analysis
+
+![](Graph_Visualizations/Degree_allParties.pdf)
+
+## ANALYSIS
 
 The figure above displays the average degree as a function of congress. I look at the 95th to 116th congresses, ticked with the corresponding year that the specified congress begins. Congresses with high <k>, such as the 107th, reflects more bipartisan voting within the House while the 114th congress shows the lowest degree, meaning very few republicans shared similar voting records to those of democrats. This visualization demonstrates significant voting trends. Despite my prediction that <k> would decline steadily over time, we see a general fluctuation. However, when considering acting presidents and events during certain time periods, this figure is very telling.
 
