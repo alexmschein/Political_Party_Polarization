@@ -5,6 +5,7 @@
 
 import csv
 import networkx as nx
+import matplotlib_terminal
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
@@ -189,9 +190,14 @@ def finding_degree(G,congress):
 
 def find_party(congress, ids):
     """
-    congress: int, congress we're looking at
-    ids: int list, all ids of people in a given congress
-    return: list, list of two lists where R = [republicans] and D = [democrats]
+    Finds affiliated party are a given congressperson
+
+    Args:
+    congress (int): congress we're looking at
+    ids (int list): all ids of people in a given congress
+
+    Return:
+        (list) list of two lists where first elt R = [republicans] and second elt D = [democrats]
     """
     parties = []
     D = [] #democrats
@@ -210,8 +216,6 @@ def find_party(congress, ids):
     parties.append(R)
 
     return parties
-
-#creates a bipartite network where democrats are "actors" and republicans are "movies"
 
 def make_bipartite(congress, threshold):
     """
@@ -294,7 +298,7 @@ plt.savefig(name)
 plt.clf()
 
 
-#finding threshold for 95th congress
+# Finding threshold for 95th congress
 xs = []
 ys = []
 for threshold in [0.1*i for i in range(1,10)]:
@@ -311,5 +315,25 @@ plt.ylabel('<k>')
 title = 'Threshold Analysis for the 95th Congress'
 plt.title(title)
 name = 'ThresholdAnalysis95.pdf'
+plt.savefig(name)
+plt.clf()
+
+# Finding threshold for 116th congress
+xs = []
+ys = []
+for threshold in [0.1*i for i in range(1,10)]:
+    G = make_net(116,threshold)
+    deg = (2*G.number_of_edges())/G.number_of_nodes()
+    print(threshold)
+    xs.append(threshold)
+    ys.append(deg)
+
+plt.plot(xs,ys,'o', alpha=0.8)
+
+plt.xlabel('Threshold')
+plt.ylabel('<k>')
+title = 'Threshold Analysis for the 116th Congress'
+plt.title(title)
+name = 'ThresholdAnalysis116.pdf'
 plt.savefig(name)
 plt.clf()
