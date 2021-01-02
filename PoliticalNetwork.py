@@ -37,10 +37,13 @@ for line in reader1:
 
 fh1.close()
 
-cong_to_party = {} #{cong1: {id1:party, id2:party}, cong2:{id3:party} }
-cong_to_name = {}
+
 fh2 = open('Hall_members.csv', 'r')
 reader2 = csv.reader(fh2, delimiter=',')
+
+
+cong_to_party = {} #{cong1: {id1:party, id2:party}, cong2:{id3:party} }
+cong_to_name = {}
 
 for line in reader2:
     if line[0] == 'congress':
@@ -69,11 +72,16 @@ for line in reader2:
 
 fh2.close()
 
-#find year of given congress
+
 def dates(congress):
     """
-    congress: the congress we're looking at now
-    return: String, first year of acting congress
+    Find year of a given congress
+
+    Args:
+        congress (int): the congress we're looking at now
+
+    Return:
+        (String) first year of acting congress
     """
     c1 = 95 #from 95th congress, 1977-1979
     start = 1977
@@ -83,12 +91,16 @@ def dates(congress):
 
     return newDate
 
-def make_net(congress, threshold):#for one congress
+def make_net(congress, threshold):
     """
-    congress: int, the congress we're looking at
-    threshold: int
-    x: boolean, if True --> only link reps and dems, if False --> link all
-    return: nx graph
+    Create a network for a single congress
+
+    Args:
+        congress (int): the congress we're looking at
+        threshold (int)
+
+    Return:
+        nx Graph
     """
 
     nodes = list(cong_to_votes[congress].keys())#list of ids
@@ -137,11 +149,19 @@ def make_net(congress, threshold):#for one congress
 
     return G
 
-#finds the highest degree in a network and returns that ids name, party, and degree centrality
+
+#x: boolean, if True --> only link reps and dems, if False --> link all
+
 def finding_degree(G,congress):
     """
-    G: nx Graph, nodes = ids of a given congress
-    return: String list, name with highest degree
+    Finds congressperson with highest degree in a given congress
+
+    Args:
+        G (nx Graph): nodes = ids of a given congress
+        congress (int): congress we're currently looking at
+
+    Return:
+        (String list) containing congressperson with highest degrees name, affiliated party, and degree centrality
     """
     all_degs = nx.degree_centrality(G) #degree centrality of every node in network
 
@@ -195,9 +215,14 @@ def find_party(congress, ids):
 
 def make_bipartite(congress, threshold):
     """
-    congress: int, congress we're looking at
-    threshold: int
-    return: bipartite betwork B
+    Creates a bipartite network where democrats are "actors" and republicans are "movies"
+
+    Args:
+        congress (int): congress we're looking at
+        threshold (int)
+
+    Return:
+        bipartite network
     """
 
     nodes = list(cong_to_votes[congress].keys())#nodes = ids

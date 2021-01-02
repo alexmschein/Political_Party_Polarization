@@ -25,7 +25,7 @@ To create an edge between two congresspeople, I take the fraction of votes where
 
 
 
-## Degree Measures
+## DEGREE MEASURES
 
 Since each network is exclusively composed of inter-party connections, nodes with high degree centrality have a higher rate of voting the same as members of the opposing party. I evaluate the average degree, <k>, of every network. Congresses with a high <k> reflect more bipartisan voting while congresses with low <k> suggest greater party-voting disparity. I plot the average degree of congresses to analyze how voting trends have changed, based on party affiliation.
 Analysis
